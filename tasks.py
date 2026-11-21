@@ -45,10 +45,12 @@ print(tokens)
 
 # Your code here:
 # -----------------------------------------------
-def tokenize(string: str, unique: bool = True) -> list:
-    toks = ["".join(char for char in word if char.isalnum()).lower() for word in string.split()]
-    toks = [t for t in toks if t]
-    return sorted(set(toks)) if unique else toks
+def tokenize(string: str) -> list:
+    toks = [
+        "".join(char for char in word if char.isalnum()).lower()
+        for word in string.split()
+    ]
+    return [token for token in toks if token]
 # -----------------------------------------------
 
 
@@ -90,8 +92,16 @@ print(word_frequencies)
 # Your code here:
 # -----------------------------------------------
 def token_counts(string: str, k: int = 1) -> dict:
-    toks = ["".join(char for char in word if char.isalnum()).lower() for word in string.split()] # Your code
-    return {token: toks.count(token) for token in set(toks) if toks.count(token) > k}
+    toks = [
+        "".join(char for char in word if char.isalnum()).lower()
+        for word in string.split()
+    ]
+    toks = [token for token in toks if token]
+    return {
+        token: toks.count(token)
+        for token in set(toks)
+        if toks.count(token) >= k
+    }
 
 # test:
 text_hist = {'the': 2, 'quick': 1, 'brown': 1, 'fox': 1, 'jumps': 1, 'over': 1, 'lazy': 1, 'dog': 1}
