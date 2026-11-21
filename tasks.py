@@ -1,5 +1,6 @@
 import numpy as np
 
+
 # Follow the tasks below to practice basic Python concepts.
 # Write your code in between the dashed lines.
 # Don't import additional packages. Numpy suffices.
@@ -33,6 +34,7 @@ text = "The quick brown fox jumps over the lazy dog!"
 tokens = ["".join(char for char in word if char.isalnum()) for word in text.split()] # Your code here
 
 # Expected output: ['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
+
 print(tokens)
 # -----------------------------------------------
 
