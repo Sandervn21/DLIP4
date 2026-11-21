@@ -282,8 +282,24 @@ np.all(sigmoid(np.log([1, 1/3, 1/7])) == np.array([1/2, 1/4, 1/8]))
 
 # Your code here:
 # -----------------------------------------------
-def rnn_layer(w: np.array, list_of_sequences: list[np.array], sigma=sigmoid ) -> np.array:
-    pass  # Your code
+def rnn_layer(w: np.array, list_of_sequences: list[np.array], sigma=sigmoid) -> np.array:
+    # 1. Setup
+    W = w[0:9].reshape(3, 3)
+    U = w[9:18].reshape(3, 3)
+    B = w[18:21]
+
+    nr_sequences = len(list_of_sequences)
+    outputs = np.empty(nr_sequences)
+
+    # 2. Iterate over sequences
+    for i in range(nr_sequences):
+        X = list_of_sequences[i]            # i-th sequence (rows = time steps)
+        a = np.zeros(X.shape[1])            # hidden state starts at 0
+        for j in range(X.shape[0]):         # iterate over time points
+            a = W @ X[j] + U @ a
+        outputs[i] = B @ a                  # output for i-th sequence
+
+    return outputs
 
 # Test
 np.random.seed(10)
