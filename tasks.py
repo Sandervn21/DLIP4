@@ -45,10 +45,10 @@ print(tokens)
 
 # Your code here:
 # -----------------------------------------------
-def tokenize(string: str) -> list:
-    return ["".join(char for char in word if char.isalnum()).lower() for word in string.split()]
-
-
+def tokenize(string: str, unique: bool = True) -> list:
+    toks = ["".join(char for char in word if char.isalnum()).lower() for word in string.split()]
+    toks = [t for t in toks if t]
+    return sorted(set(toks)) if unique else toks
 # -----------------------------------------------
 
 
@@ -76,7 +76,6 @@ def tokenize(string: str) -> list:
 # Your code here:
 # -----------------------------------------------
 word_frequencies = {token: tokens.count(token) for token in set(tokens)}
-
 # Expected output example: {'the': 2, 'quick': 1, ...}
 print(word_frequencies)
 
